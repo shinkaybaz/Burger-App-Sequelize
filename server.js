@@ -19,5 +19,13 @@ app.set('view engine','handlebars');
 var routes = require('./controllers/routes.js');
 app.use('/',routes);
 
-var port = 3000;
+var port = 8080;
 app.listen(port);
+
+require("./controllers/burger_controller.js")(app);
+
+db.sequelize.sync({ force: true }).then(function() {
+    app.listen(PORT, function() {
+      console.log("App listening on PORT " + PORT);
+    });
+  });
